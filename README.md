@@ -1,5 +1,14 @@
 # 📊 AI-Driven E-commerce Analytics Agent & Executive Dashboard
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://stratulat-bi-suite.streamlit.app/)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.42-FF4B4B.svg?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg?style=flat&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![Plotly](https://img.shields.io/badge/Plotly-5.24-3F4F75.svg?style=flat&logo=plotly&logoColor=white)](https://plotly.com/)
+[![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C.svg?style=flat&logo=chainlink&logoColor=white)](https://www.langchain.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E.svg?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
+[![Groq](https://img.shields.io/badge/Inference-Groq%20Cloud-orange.svg?style=flat)](https://groq.com/)
+
 An Enterprise-grade, AI-powered business intelligence platform that combines a **Large Language Model (LLM)** agent with a live cloud data warehouse (**Supabase / PostgreSQL**). The system translates natural language business queries directly into optimized SQL, runs them securely, and dynamically renders fully responsive executive charts using **Streamlit** and **Plotly Express**.
 
 ---
