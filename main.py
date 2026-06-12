@@ -5,6 +5,7 @@ import sys
 import pandas as pd
 from datetime import datetime, date
 from sqlalchemy import create_engine
+import psycopg2
 
 # 1. Keep this so Python knows where to resolve inner imports inside ai_agent.py
 sys.path.append(os.path.join(os.path.dirname(__file__), "environment", "scripts"))
@@ -168,6 +169,43 @@ if st.sidebar.button("🗑️ Clear Chat History"):
     st.session_state.messages = []
     st.cache_data.clear()  # Triggers native Streamlit cache clearing function
     st.rerun()
+
+st.sidebar.divider()
+# Section for capturing user feedback / unanswered queries
+st.sidebar.markdown("### 📥 Unresolved Questions?")
+st.sidebar.write("If the AI Agent couldn't help, leave your question below so we can upgrade its logic!")
+
+# Use a form so it doesn't refresh the page on every keystroke
+with st.sidebar.form(key="unanswered_form", clear_on_submit=True):
+    user_failed_query = st.text_area("Your question:", placeholder="What were you trying to find out?", max_chars=300)
+    submit_feedback = st.form_submit_button("🚀 Submit Question")
+    
+    if submit_feedback:
+        if user_failed_query.strip() != "":
+            try:
+                # Connect to database using the existing connection string from secrets
+                db_url = os.getenv("SUPABASE_DB_URL") or st.secrets.get("SUPABASE_DB_URL")
+                conn = psycopg2.connect(db_url)
+                cursor = conn.cursor()
+                
+                # Insert the failed query and the currently selected agent for context
+                insert_query = """
+                    INSERT INTO unanswered_questions (question_text, selected_agent) 
+                    VALUES (%s, %s);
+                """
+                cursor.execute(insert_query, (user_failed_query, agent_selectat))
+                conn.commit()
+                
+                cursor.close()
+                conn.close()
+                
+                st.sidebar.success("Thank you! Your feedback has been saved privately.")
+            except Exception as e:
+                # Print core error to local terminal for debugging
+                print(f"SUPABASE FORM ERROR: {e}")
+                st.sidebar.error("Could not save. Please try again later.")
+        else:
+            st.sidebar.warning("Please write something before submitting.")
 
 # ----------------- ADVANCED TOKEN DIET CACHING ENGINE -----------------
 @st.cache_data(show_spinner=False, ttl=86400)
