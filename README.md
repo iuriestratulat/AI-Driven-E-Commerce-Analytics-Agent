@@ -8,8 +8,16 @@
 [![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C.svg?style=flat&logo=chainlink&logoColor=white)](https://www.langchain.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E.svg?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
 [![Groq](https://img.shields.io/badge/Inference-Groq%20Cloud-orange.svg?style=flat)](https://groq.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](LICENSE)
 
 An Enterprise-grade, AI-powered business intelligence platform that combines a **Large Language Model (LLM)** agent with a live cloud data warehouse (**Supabase / PostgreSQL**). The system translates natural language business queries directly into optimized SQL, runs them securely, and dynamically renders fully responsive executive charts using **Streamlit** and **Plotly Express**.
+
+---
+
+## 🔗 Live Deployment
+The production-ready executive dashboard is actively hosted in the cloud:
+👉 **[Click here to view the Live Streamlit Application](https://ai-driven-e-commerce-analytics-agent.streamlit.app/)
+⚡ Note: The first load may take 15-30 seconds as the free tier service wakes up.
 
 ---
 
@@ -69,14 +77,14 @@ AI_ANALYTICS_AGENT/
 │       ├── generate_advanced_data.py  # ETL engine simulating marketing spend, CRM pipelines, and SLA
 │       └── upload_to_supabase.py      # Automated script to push localized Data Output into Supabase
 │   
-├── .env                               # Local environment variables (ADDED TO .GITIGNORE)                      
+├── .env                               # Local environment variables (ADDED TO .GITIGNORE)
+├── LICENSE                            # MIT License
+├── README.md                          # Project documentation, setup guide, and architectural overview                     
 ├── main.py                            # Streamlit application core file containing UI layout and session state
-├── README.md                          # Project documentation, setup guide, and architectural overview
 └── requirements.txt                   # Python environment packages and library dependencies
 ```
 
 ---
-
 
 ## 🛠️ Installation & Quick Start
 
@@ -86,16 +94,15 @@ Follow these steps to spin up the data pipeline and launch the dashboard locally
 Ensure you have Python 3.10+ installed on your system.
 
 ```bash
-git clone https://github.com/iuriestratulat/AI-Driven-E-Commerce-Analytics-Agent.git
-cd AI-Driven-E-Commerce-Agent
-cd your-repo-name
-pip install -r requirements.txt 
+git clone [https://github.com/iuriestratulat/AI-Driven-E-Commerce-Analytics-Agent.git](https://github.com/iuriestratulat/AI-Driven-E-Commerce-Analytics-Agent.git)
+cd AI-Driven-E-Commerce-Analytics-Agent
+pip install -r requirements.txt
 ``` 
 
 ### 2. Configure Environment Variables
-Create a .env file in the root directory of the project (ensure it is added to your .gitignore) and insert your credentials:
-```bash
-SUPABASE_DB_URL=postgresql://postgres.[YOUR_PASSWORD]@[aws-1-eu-central-1.pooler.supabase.com:5432/postgres]
+Create a .env file in the root directory of the project (ensure it is added to your .gitignore) and insert your own cloud credentials:
+```env
+SUPABASE_DB_URL=postgresql://postgres.[YOUR_DATABASE_PASSWORD]@[aws-1-eu-central-1.pooler.supabase.com:5432/postgres](https://aws-1-eu-central-1.pooler.supabase.com:5432/postgres)
 GROQ_API_KEY=gsk_your_actual_groq_api_key_here
 ```
 
