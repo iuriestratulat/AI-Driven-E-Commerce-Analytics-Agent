@@ -55,9 +55,12 @@ Before any AI interaction occurs, raw, unorganized e-commerce datasets are proce
 ### 3. The Autonomous AI Orchestration (LangChain + Groq + Llama 3.3)
 When a user inputs a natural language question (in English, Romanian, German, etc.), the backend agent executes a deterministic multi-step reasoning loop:
 
+```text
 [User Query] ➡️ [Llama 3.3 Translation & Concept Mapping] ➡️ [Secure Tool Calling]
 |
 [Interactive Visuals] ⬅️ [Pandas Dataframe] ⬅️ [SQL Execution] 🍁 [PostgreSQL Database]
+
+```
 
 1. **Semantic Translation:** The model translates multi-language business terms into precise data concepts matching the database schema.
 2. **Safe Tool Calling:** LangChain securely passes the context to an internal SQL generation tool. The model generates standard, read-only PostgreSQL syntax.
