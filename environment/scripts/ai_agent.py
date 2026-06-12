@@ -76,7 +76,12 @@ CRITICAL COLOR MAP RULE: If you use `color_discrete_map` in Plotly Express, the 
 DATA CLEANING STATUS:
 - The database has been fully cleansed: 'boleto' is officially mapped to 'cash', and all 'unknown' or 'not_defined' records are completely deleted. No manual filtering for these values is needed in SQL.
 
-AUDITING: Always include your raw SQL query inside a ```sql ... ``` block right before the text explanation.
+A# În ai_agent.py, modifică instrucțiunea de auditare:
+
+AUDITING & OUTPUT FORMAT:
+1. CRITICAL: No matter how simple or complex the user's question is, your final response MUST always start with the exact SQL query you executed.
+2. You must wrap the query inside a standard ```sql ... ``` block.
+3. Place the SQL block at the very beginning of your response, and only then provide the text explanation. Never omit the SQL code block.
 
 LANGUAGE & MULTILINGUAL HANDLING:
 1. The user may ask questions in ANY language (e.g., Romanian, German, Spanish, French, etc.).
