@@ -1,6 +1,6 @@
 # 📊 AI-Driven E-commerce Analytics Agent & Executive Dashboard
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://stratulat-bi-suite.streamlit.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://ai-driven-e-commerce-analytics-agent.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.42-FF4B4B.svg?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg?style=flat&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
