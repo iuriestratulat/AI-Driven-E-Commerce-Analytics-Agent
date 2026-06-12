@@ -14,10 +14,12 @@ An Enterprise-grade, AI-powered business intelligence platform that combines a *
 
 ---
 
-## 🔗 Live Deployment
+## 🔗 Live Dashboard
 The production-ready executive dashboard is actively hosted in the cloud:
+
 👉 **[Click here to view the Live Streamlit Application](https://ai-driven-e-commerce-analytics-agent.streamlit.app/)
-⚡ Note: The first load may take 15-30 seconds as the free tier service wakes up.
+
+> ⚡ *Note: The first load may take 15-30 seconds as the free tier service wakes up.*
 
 ---
 
@@ -34,6 +36,33 @@ Traditional business intelligence (BI) requires specialized data analysts to wri
 - **Instant Strategic Decisions:** Drastically slashes time-to-insight for executive-level meetings from days to fractions of a second.
 - **Cross-Department Visibility:** Unifies Marketing data (Ad Spend, ROAS), Operations/CRM logs (Lead stages, conversion metrics, SLA response times), Logistics (Delivery delays), and Finance (Absolute Revenue, payment distributions) under a single interface.
 - **Micro-Segmentation Insights:** Allows instant analytical drilling by Sales Agent or customized Date Ranges directly from the interactive UI.
+
+---
+
+## 🧠 System Architecture & How It Works
+
+This suite bridges the gap between raw corporate data and executive decision-making using a robust, decoupled architecture divided into three core phases:
+
+### 1. The ETL & Data Modeling Layer (Python + Pandas)
+Before any AI interaction occurs, raw, unorganized e-commerce datasets are processed locally:
+* **Data Cleansing & Normalization:** Python scripts ingest distributed source files, resolve missing values, parse timestamps, and standardize chaotic fields (e.g., transforming legacy payment codes into clean categories like `cash`, `credit_card`).
+* **Star Schema Migration:** The data is architected into an optimized relational Star Schema—separating transaction metrics into a central Fact table (`fact_sales`) surrounded by descriptive Dimension tables. This guarantees ultra-fast SQL execution.
+
+### 2. The Cloud Data Warehouse (Supabase + PostgreSQL)
+* The structured Star Schema is securely streamed and hosted on a cloud-native Supabase instance.
+* **Row-Level Security (RLS):** Strict security policies are enforced directly at the database level. Anonymous frontend clients have isolated `INSERT-only` permissions to record user feedback, while administrative roles hold full database access, preventing data leaks or unauthorized script injections.
+
+### 3. The Autonomous AI Orchestration (LangChain + Groq + Llama 3.3)
+When a user inputs a natural language question (in English, Romanian, German, etc.), the backend agent executes a deterministic multi-step reasoning loop:
+
+[User Query] ➡️ [Llama 3.3 Translation & Concept Mapping] ➡️ [Secure Tool Calling]
+|
+[Interactive Visuals] ⬅️ [Pandas Dataframe] ⬅️ [SQL Execution] 🍁 [PostgreSQL Database]
+
+1. **Semantic Translation:** The model translates multi-language business terms into precise data concepts matching the database schema.
+2. **Safe Tool Calling:** LangChain securely passes the context to an internal SQL generation tool. The model generates standard, read-only PostgreSQL syntax.
+3. **Execution & Sandboxing:** The query is executed in a secure environment. The results are returned as a structured Pandas Dataframe.
+4. **Dynamic Rendering:** The frontend dynamically intercepts the dataframe. If the schema contains visual distribution trend data, it automatically overrides standard markdown text and injects fully interactive vertical or horizontal Plotly charts.
 
 ---
 
