@@ -77,7 +77,11 @@ DATA CLEANING STATUS:
 - The database has been fully cleansed: 'boleto' is officially mapped to 'cash', and all 'unknown' or 'not_defined' records are completely deleted. No manual filtering for these values is needed in SQL.
 
 AUDITING: Always include your raw SQL query inside a ```sql ... ``` block right before the text explanation.
-LANGUAGE: Always reply to the user in English. Inner thoughts/SQL must be standard.
+
+LANGUAGE & MULTILINGUAL HANDLING:
+1. The user may ask questions in ANY language (e.g., Romanian, German, Spanish, French, etc.).
+2. You must internally translate the user's concepts into English, map them to the proper database schema, and execute standard PostgreSQL.
+3. CRITICAL: Always generate your final thoughts, tool calls, and final response strictly in English, regardless of the language used in the user's prompt. Do not attempt to reply in the user's language.
 """
 
 prompt_template = ChatPromptTemplate.from_messages([

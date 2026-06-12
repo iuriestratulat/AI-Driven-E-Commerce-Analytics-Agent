@@ -16,7 +16,9 @@ from environment.scripts.ai_agent import agent_executor
 st.set_page_config(page_title="AI E-commerce Analytics Agent", page_icon="📊", layout="wide")
 
 st.title("📊 AI Analytics Agent – Dynamic Executive Dashboard")
-st.markdown("Ask complex business questions or use the predefined scenarios in the sidebar to generate automated analyses and charts.")
+st.markdown("Ask complex business questions or use the predefined scenarios in the sidebar to generate automated analyses and charts.\n\n"
+    "💡 **Note:** You can ask questions in any language, but the Agent will always reason and reply strictly in English."
+)
 
 # ----------------- SIDEBAR FILTERS & PREDEFINED SCENARIOS -----------------
 st.sidebar.header("🎛️ Executive Filters")
@@ -25,17 +27,99 @@ st.sidebar.header("🎛️ Executive Filters")
 lista_agenti = ["All agents", "Ana Silva", "Lucas Santos", "Mariana Costa", "Rodrigo Mello"]
 agent_selectat = st.sidebar.selectbox("Select Sales Agent:", lista_agenti)
 
-st.sidebar.markdown("### 📋 Team Activity History")
+# --- Dynamic Team Activity History with Hover Tooltip ---
+
+# Define the text content based on selection using HTML formatting for the tooltip box
 if agent_selectat == "All agents":
-    st.sidebar.info("💡 **Ana Silva**: September 2023\n\n⚡ **Lucas Santos**: February 2024\n\n🟢 **Mariana Costa**: December 2024\n\n🟢 **Rodrigo Mello**: December 2024")
+    tooltip_content = (
+        "<b>💡 Ana Silva:</b> September 2023<br><br>"
+        "<b>⚡ Lucas Santos:</b> February 2024<br><br>"
+        "<b>🟢 Mariana Costa:</b> December 2024<br><br>"
+        "<b>🟢 Rodrigo Mello:</b> December 2024"
+    )
 elif agent_selectat == "Ana Silva":
-    st.sidebar.success("👑 **Department Founder**: Active since September 2023. Holds the largest customer portfolio.")
+    tooltip_content = "<b>👑 Department Founder:</b> Active since September 2023. Holds the largest customer portfolio."
 elif agent_selectat == "Lucas Santos":
-    st.sidebar.success("⚡ **Senior Agent**: Joined in February 2024. Responsible for Q2-Q3 volume expansion.")
+    tooltip_content = "<b>⚡ Senior Agent:</b> Joined in February 2024. Responsible for Q2-Q3 volume expansion."
 elif agent_selectat == "Mariana Costa":
-    st.sidebar.success("🟢 **Specialized Agent**: Hired in December 2024 following massive Black Friday growth.")
+    tooltip_content = "<b>🟢 Specialized Agent:</b> Hired in December 2024 following massive Black Friday growth."
 elif agent_selectat == "Rodrigo Mello":
-    st.sidebar.success("🟢 **Specialized Agent**: Hired in December 2024 to optimize pipeline conversions.")
+    tooltip_content = "<b>🟢 Specialized Agent:</b> Hired in December 2024 to optimize pipeline conversions."
+
+# HTML & CSS Injection to create the clean Title + (?) Circle Hover effect
+hover_component_html = f"""
+<style>
+.history-layout-container {{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}}
+.history-inline-title {{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}}
+.info-hover-wrapper {{
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}}
+.circle-question-icon {{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #808495;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #808495;
+    background-color: transparent;
+}}
+.info-hover-wrapper .tooltip-box-content {{
+    visibility: hidden;
+    width: 260px;
+    background-color: #262730;
+    color: #FAFAFA;
+    text-align: left;
+    border: 1px solid #464855;
+    border-radius: 8px;
+    padding: 12px;
+    position: absolute;
+    z-index: 999;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    font-size: 13px;
+    font-family: sans-serif;
+    line-height: 1.4;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
+}}
+.info-hover-wrapper:hover .tooltip-box-content {{
+    visibility: visible;
+    opacity: 1;
+}}
+</style>
+
+<div class="history-layout-container">
+    <span class="history-inline-title">📋 Team Activity History</span>
+    <div class="info-hover-wrapper">
+        <span class="circle-question-icon">?</span>
+        <div class="tooltip-box-content">
+            {tooltip_content}
+        </div>
+    </div>
+</div>
+"""
+
+# Render the hover menu component into the sidebar
+st.sidebar.markdown(hover_component_html, unsafe_allow_html=True)
 
 # 2. Date Filter Range (Adjusted to real Olist dataset bounds up to Nov 2025)
 st.sidebar.subheader("📅 Date Range")
